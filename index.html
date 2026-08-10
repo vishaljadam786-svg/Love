@@ -218,7 +218,7 @@
       transform: scale(1.38);
     }
 
-    /* Photo Album Section (Perfectly Centered 3D Book) */
+    /* Photo Album Section */
     #photoPage {
       display: none;
       flex-direction: column;
@@ -300,22 +300,22 @@
       margin-top: 5px;
     }
 
-    /* Burst Emoji Particle Styling */
+    /* High Z-Index Burst Emoji Particles */
     .burst-emoji {
       position: fixed;
       pointer-events: none;
-      z-index: 999;
-      animation: burstFly 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      z-index: 9999;
+      animation: burstFly 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
       user-select: none;
     }
 
     @keyframes burstFly {
       0% {
-        transform: translate(0, 0) scale(0.5);
+        transform: translate(-50%, -50%) scale(0.4);
         opacity: 1;
       }
       100% {
-        transform: translate(var(--tx), var(--ty)) scale(1.4);
+        transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.5);
         opacity: 0;
       }
     }
@@ -381,11 +381,9 @@
     <p class="hint-text">Photo par tap karein page palatne ke liye!</p>
 
     <div class="book-container">
-      <!-- Book Base for 3D Stack Effect -->
       <div class="book-base"></div>
 
       <div class="book" id="book">
-        <!-- Pages stacked backwards (Image 5 bottom, Image 1 top) -->
         <div class="page" data-page="5" style="z-index: 1;"><img src="image5.jpg" alt="Memory 5"></div>
         <div class="page" data-page="4" style="z-index: 2;"><img src="image4.jpg" alt="Memory 4"></div>
         <div class="page" data-page="3" style="z-index: 3;"><img src="image3.jpg" alt="Memory 3"></div>
@@ -536,11 +534,11 @@
       document.getElementById('photoPage').style.display = 'flex';
     });
 
-    // Emoji Burst Effects Function
-    function triggerEmojiBurst(emojiList) {
-      const count = 30;
-      const startX = window.innerWidth / 2;
-      const startY = window.innerHeight / 2;
+    // Emoji Burst Effects Function (Tap Location Centered)
+    function triggerEmojiBurst(emojiList, clickX, clickY) {
+      const count = 25;
+      const startX = clickX || (window.innerWidth / 2);
+      const startY = clickY || (window.innerHeight / 2);
 
       for (let i = 0; i < count; i++) {
         const el = document.createElement('div');
@@ -553,7 +551,7 @@
         el.style.top = `${startY}px`;
 
         const angle = Math.random() * Math.PI * 2;
-        const distance = Math.random() * 250 + 100;
+        const distance = Math.random() * 200 + 80;
         const tx = Math.cos(angle) * distance;
         const ty = Math.sin(angle) * distance;
 
@@ -566,27 +564,28 @@
       }
     }
 
-    // Book Page Flip Logic (Hearts -> Stars -> Balloons -> Repeat)
+    // Book Page Flip Logic
     const pages = document.querySelectorAll('.page');
     const heartBurst = ['❤️', '💖', '💗', '💓', '💕'];
     const starBurst = ['⭐', '✨', '🌟', '💫', '⚡'];
     const balloonBurst = ['🎈', '🎈', '🎈', '🎉', '🎈'];
 
     pages.forEach((page) => {
-      page.addEventListener('click', () => {
+      page.addEventListener('click', (e) => {
         const pageNum = parseInt(page.getAttribute('data-page'));
+        const clickX = e.clientX || window.innerWidth / 2;
+        const clickY = e.clientY || window.innerHeight / 2;
 
-        // Emoji selection sequence based on page
+        // Sequence trigger
         if (pageNum === 1 || pageNum === 4) {
-          triggerEmojiBurst(heartBurst);
+          triggerEmojiBurst(heartBurst, clickX, clickY);
         } else if (pageNum === 2 || pageNum === 5) {
-          triggerEmojiBurst(starBurst);
+          triggerEmojiBurst(starBurst, clickX, clickY);
         } else if (pageNum === 3) {
-          triggerEmojiBurst(balloonBurst);
+          triggerEmojiBurst(balloonBurst, clickX, clickY);
         }
 
         if (pageNum === 5) {
-          // Last page click par reset
           page.classList.add('flipped');
           setTimeout(() => {
             pages.forEach((p) => p.classList.remove('flipped'));
