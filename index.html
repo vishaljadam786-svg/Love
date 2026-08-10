@@ -145,6 +145,34 @@
       z-index: 100;
     }
 
+    /* Floating Music Play/Pause Button */
+    .music-control-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      background: rgba(255, 255, 255, 0.85);
+      border: 2px solid #8b0032;
+      color: #8b0032;
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(139, 0, 50, 0.2);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .music-control-btn:hover {
+      transform: scale(1.05);
+      background: #8b0032;
+      color: white;
+    }
+
     /* Cheeky Toast Message */
     #toast {
       position: fixed;
@@ -342,7 +370,12 @@
 <body>
 
   <!-- Background Audio Element -->
-  <audio id="bgMusic" loop src="song.mp3"></audio>
+  <audio id="bgMusic" loop preload="auto">
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Bottom Right Music Toggle Button -->
+  <button id="musicBtn" class="music-control-btn">🎵 Play Song</button>
 
   <!-- Floating Hearts Background -->
   <div id="hearts-container"></div>
@@ -400,8 +433,22 @@
   </div>
 
   <script>
-    // Audio Player Reference
+    // Audio Player Toggle Logic
     const bgMusic = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+
+    function toggleMusic() {
+      if (bgMusic.paused) {
+        bgMusic.play().then(() => {
+          musicBtn.innerHTML = '⏸️ Pause Song';
+        }).catch(err => console.log('Audio play error:', err));
+      } else {
+        bgMusic.pause();
+        musicBtn.innerHTML = '🎵 Play Song';
+      }
+    }
+
+    musicBtn.addEventListener('click', toggleMusic);
 
     // Create 15 Floating Hearts
     const heartsContainer = document.getElementById('hearts-container');
@@ -506,15 +553,16 @@
       moveNoButton();
     });
 
-    // Yes Button Click - Celebration & Music Play
+    // Yes Button Click - Celebration & Auto Play Audio
     yesBtn.addEventListener('click', () => {
+      if (bgMusic.paused) {
+        bgMusic.play().then(() => {
+          musicBtn.innerHTML = '⏸️ Pause Song';
+        }).catch(e => console.log('Autoplay blocked:', e));
+      }
+
       document.getElementById('proposalCard').style.display = 'none';
       heartsContainer.innerHTML = '';
-
-      // Play Background Song
-      if (bgMusic) {
-        bgMusic.play().catch(e => console.log('Audio autoplay blocked:', e));
-      }
 
       const celebration = document.getElementById('celebration');
       celebration.style.display = 'flex';
