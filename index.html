@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Be My Girlfriend?</title>
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -277,7 +278,7 @@
     }
 
     .sketchbook-wrapper {
-      perspective: 1600px;
+      perspective: 2000px;
       margin: 25px auto 10px auto;
       width: 340px;
       height: 240px;
@@ -286,29 +287,28 @@
 
     @media (min-width: 480px) {
       .sketchbook-wrapper {
-        width: 440px;
-        height: 290px;
+        width: 460px;
+        height: 300px;
       }
     }
 
-    /* Open Book Container */
     .sketchbook {
       width: 100%;
       height: 100%;
       position: relative;
       transform-style: preserve-3d;
       background: #fbf7ef;
-      border-radius: 10px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 0 4px #5a1228;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), 0 0 0 5px #5a1228;
     }
 
-    /* Center Spiral Binder */
+    /* Center Spiral Binder Rings */
     .spiral-binding {
       position: absolute;
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 20px;
+      width: 24px;
       height: 100%;
       z-index: 100;
       display: flex;
@@ -319,11 +319,11 @@
     }
 
     .ring {
-      width: 22px;
-      height: 7px;
-      background: linear-gradient(90deg, #555, #ccc, #222);
+      width: 26px;
+      height: 8px;
+      background: linear-gradient(90deg, #333, #eee, #111);
       border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+      box-shadow: 0 3px 5px rgba(0,0,0,0.5);
     }
 
     /* Base Under Pages */
@@ -333,17 +333,17 @@
       width: 50%;
       height: 100%;
       background: #f4ece1;
-      padding: 8px;
+      padding: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
     }
-    .book-left-base { left: 0; border-radius: 8px 0 0 8px; border-right: 1px solid #ddd; }
-    .book-right-base { right: 0; border-radius: 0 8px 8px 0; border-left: 1px solid #ddd; }
+    .book-left-base { left: 0; border-radius: 10px 0 0 10px; }
+    .book-right-base { right: 0; border-radius: 0 10px 10px 0; }
 
-    /* Flipping Sheets */
+    /* Turning Sheets */
     .sheet {
       position: absolute;
       top: 0;
@@ -352,7 +352,7 @@
       height: 100%;
       transform-origin: left center;
       transform-style: preserve-3d;
-      transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+      transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
       cursor: pointer;
     }
 
@@ -363,37 +363,55 @@
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
       background: #fdfaf5;
-      padding: 6px;
+      padding: 8px;
       border: 1px solid #e2d7c7;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.08);
+      border-radius: 0 10px 10px 0;
     }
 
     .sheet-face img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 4px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      pointer-events: none;
     }
 
-    /* Back side of sheet (Faces left after flip) */
+    /* Back side of sheet */
     .sheet-face.back {
       transform: rotateY(180deg);
-      border-radius: 8px 0 0 8px;
+      border-radius: 10px 0 0 10px;
     }
 
-    .sheet-face.front {
-      border-radius: 0 8px 8px 0;
+    /* Dynamic Page Shadow Effect */
+    .sheet::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%);
+      opacity: 0;
+      transition: opacity 1.2s ease;
+      pointer-events: none;
+      border-radius: 0 10px 10px 0;
     }
 
     /* Flipped State */
     .sheet.flipped {
       transform: rotateY(-180deg);
+    }
+
+    .sheet.flipped::after {
+      opacity: 0.15;
     }
 
     .hint-text {
@@ -443,16 +461,21 @@
 </head>
 <body>
 
+  <!-- Background Audio Element -->
   <audio id="bgMusic" loop preload="auto">
     <source src="song.mp3" type="audio/mpeg">
   </audio>
 
+  <!-- Top Middle Fixed Highlighted Play Song Button -->
   <button id="musicBtn" class="highlight-music-btn">🎵 Play Song for Vibe ✨</button>
 
+  <!-- Floating Hearts Background Container -->
   <div id="hearts-container"></div>
 
+  <!-- Toast Notification -->
   <div id="toast"></div>
 
+  <!-- Main Question UI -->
   <div class="card" id="proposalCard">
     <div class="bear">🧸</div>
     <h1>Will You Be My Girlfriend, Monika?</h1>
@@ -466,6 +489,7 @@
     <p class="quote">"Every love story is beautiful, but ours is my favourite"</p>
   </div>
 
+  <!-- Celebration UI -->
   <div class="card" id="celebration">
     <div class="yay-text">YAYYYY I KNOW YOU LOVE ME ☺️!!</div>
     <div class="spinning-emoji">💖</div>
@@ -481,6 +505,7 @@
     <button class="btn next-btn" id="goToPhotosBtn">Our Memories 📖</button>
   </div>
 
+  <!-- 3D Sketchbook Photo Album Section -->
   <div class="card" id="photoPage">
     <h1 style="font-size: 2.2rem;">Our Special Moments 💕</h1>
     <p class="hint-text">Book par tap karein page turn karne ke liye!</p>
@@ -488,6 +513,7 @@
     <div class="sketchbook-wrapper">
       <div class="sketchbook">
         
+        <!-- Spiral Binding Rings down center -->
         <div class="spiral-binding">
           <div class="ring"></div>
           <div class="ring"></div>
@@ -499,15 +525,19 @@
           <div class="ring"></div>
         </div>
 
+        <!-- Left Base Page (Static background) -->
         <div class="book-left-base">
           <img src="image5.jpg" alt="Memory 5" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">
         </div>
 
+        <!-- Right Base Page (Final page under all sheets) -->
         <div class="book-right-base">
           <img src="image4.jpg" alt="Memory 4" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">
         </div>
 
-        <div class="sheet" id="sheet2" style="z-index: 10;">
+        <!-- 3D Turning Sheets -->
+        <!-- Sheet 2: Front = Image 3, Back = Image 4 -->
+        <div class="sheet" id="sheet2">
           <div class="sheet-face front">
             <img src="image3.jpg" alt="Memory 3">
           </div>
@@ -516,7 +546,8 @@
           </div>
         </div>
 
-        <div class="sheet" id="sheet1" style="z-index: 20;">
+        <!-- Sheet 1: Front = Image 1, Back = Image 2 -->
+        <div class="sheet" id="sheet1">
           <div class="sheet-face front">
             <img src="image1.jpg" alt="Memory 1">
           </div>
@@ -722,10 +753,16 @@
       }
     }
 
-    // 3D Sketchbook Flip Handler
+    // 3D Realistic Page Flip & Layer Ordering Handler
     const sheets = document.querySelectorAll('.sheet');
     const heartBurst = ['❤️', '💖', '💗', '💓', '💕'];
     const starBurst = ['⭐', '✨', '🌟', '💫', '⚡'];
+
+    // Initial z-index assignment for correct stacking
+    const totalSheets = sheets.length;
+    sheets.forEach((sheet, idx) => {
+      sheet.style.zIndex = totalSheets - idx;
+    });
 
     sheets.forEach((sheet, index) => {
       sheet.addEventListener('click', (e) => {
@@ -734,9 +771,19 @@
 
         if (!sheet.classList.contains('flipped')) {
           sheet.classList.add('flipped');
+          
+          setTimeout(() => {
+            sheet.style.zIndex = index + 1;
+          }, 300);
+
           triggerEmojiBurst(index % 2 === 0 ? heartBurst : starBurst, clickX, clickY);
         } else {
           sheet.classList.remove('flipped');
+          
+          setTimeout(() => {
+            sheet.style.zIndex = totalSheets - index;
+          }, 300);
+
           triggerEmojiBurst(heartBurst, clickX, clickY);
         }
       });
