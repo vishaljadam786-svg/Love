@@ -341,6 +341,9 @@
 </head>
 <body>
 
+  <!-- Background Audio Element -->
+  <audio id="bgMusic" loop src="song.mp3"></audio>
+
   <!-- Floating Hearts Background -->
   <div id="hearts-container"></div>
 
@@ -397,6 +400,9 @@
   </div>
 
   <script>
+    // Audio Player Reference
+    const bgMusic = document.getElementById('bgMusic');
+
     // Create 15 Floating Hearts
     const heartsContainer = document.getElementById('hearts-container');
     const heartEmojis = ['❤️', '💖', '💗', '💓', '💕'];
@@ -500,17 +506,22 @@
       moveNoButton();
     });
 
-    // Yes Button Click - Celebration
+    // Yes Button Click - Celebration & Music Play
     yesBtn.addEventListener('click', () => {
       document.getElementById('proposalCard').style.display = 'none';
       heartsContainer.innerHTML = '';
+
+      // Play Background Song
+      if (bgMusic) {
+        bgMusic.play().catch(e => console.log('Audio autoplay blocked:', e));
+      }
 
       const celebration = document.getElementById('celebration');
       celebration.style.display = 'flex';
 
       const video = celebration.querySelector('video');
       if (video) {
-        video.play().catch(e => console.log('Autoplay blocked:', e));
+        video.play().catch(e => console.log('Video autoplay blocked:', e));
       }
 
       const colors = ['#ff0054', '#9e0059', '#ffbd00', '#ff5400', '#390099', '#ffffff', '#ff4d6d'];
@@ -537,7 +548,7 @@
       document.getElementById('photoPage').style.display = 'flex';
     });
 
-    // Emoji Burst Effects Function (Slow 1.5s Burst)
+    // Emoji Burst Effects Function
     function triggerEmojiBurst(emojiList, clickX, clickY) {
       const count = 25;
       const startX = clickX || (window.innerWidth / 2);
@@ -579,7 +590,6 @@
         const clickX = e.clientX || window.innerWidth / 2;
         const clickY = e.clientY || window.innerHeight / 2;
 
-        // Sequence trigger
         if (pageNum === 1 || pageNum === 4) {
           triggerEmojiBurst(heartBurst, clickX, clickY);
         } else if (pageNum === 2 || pageNum === 5) {
