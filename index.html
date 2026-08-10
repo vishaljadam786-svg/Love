@@ -28,7 +28,7 @@
       position: relative;
     }
 
-    /* Floating Hearts Container */
+    /* Floating Hearts Background Container */
     #hearts-container {
       position: fixed;
       top: 0;
@@ -218,20 +218,21 @@
       transform: scale(1.38);
     }
 
-    /* Photo Album Section (Real 3D Book) */
+    /* Photo Album Section (Perfectly Centered 3D Book) */
     #photoPage {
       display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 10;
+      width: 100%;
     }
 
     .book-container {
-      width: 260px;
-      height: 360px;
+      width: 270px;
+      height: 370px;
       perspective: 1200px;
-      margin: 20px 0;
+      margin: 20px auto;
       position: relative;
     }
 
@@ -246,21 +247,15 @@
       border-radius: 12px;
       border: 3px solid #8b0032;
       box-shadow: 
-        0 10px 25px rgba(0, 0, 0, 0.3),
-        5px 5px 0px #f4e8ec,
-        8px 8px 0px #e6cbd3,
-        12px 12px 0px #8b0032;
+        0 10px 25px rgba(0, 0, 0, 0.25),
+        4px 4px 0px #f4e8ec,
+        7px 7px 0px #e6cbd3,
+        10px 10px 0px #8b0032;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 15px;
-    }
-
-    .book-base p {
-      color: #8b0032;
-      font-weight: 600;
-      font-size: 1.1rem;
     }
 
     .book {
@@ -278,8 +273,8 @@
       left: 0;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      transform-origin: center; /* Center transition prevents moving left offscreen */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      transform-origin: center;
       transition: transform 0.6s ease-in-out, opacity 0.4s ease-in-out;
       cursor: pointer;
       background: white;
@@ -303,6 +298,26 @@
       font-size: 0.85rem;
       color: #7a1c3d;
       margin-top: 5px;
+    }
+
+    /* Burst Emoji Particle Styling */
+    .burst-emoji {
+      position: fixed;
+      pointer-events: none;
+      z-index: 999;
+      animation: burstFly 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      user-select: none;
+    }
+
+    @keyframes burstFly {
+      0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--tx), var(--ty)) scale(1.4);
+        opacity: 0;
+      }
     }
 
     /* Confetti */
@@ -367,19 +382,15 @@
 
     <div class="book-container">
       <!-- Book Base for 3D Stack Effect -->
-      <div class="book-base">
-        <p>End of Memories ❤️</p>
-        <span style="font-size: 2.5rem; margin-top: 10px;">✨</span>
-        <button class="btn next-btn" id="resetBookBtn" style="font-size: 0.85rem; padding: 8px 16px;">Reopen Album 🔄</button>
-      </div>
+      <div class="book-base"></div>
 
       <div class="book" id="book">
         <!-- Pages stacked backwards (Image 5 bottom, Image 1 top) -->
-        <div class="page" style="z-index: 1;"><img src="image5.jpg" alt="Memory 5"></div>
-        <div class="page" style="z-index: 2;"><img src="image4.jpg" alt="Memory 4"></div>
-        <div class="page" style="z-index: 3;"><img src="image3.jpg" alt="Memory 3"></div>
-        <div class="page" style="z-index: 4;"><img src="image2.jpg" alt="Memory 2"></div>
-        <div class="page" style="z-index: 5;"><img src="image1.jpg" alt="Memory 1"></div>
+        <div class="page" data-page="5" style="z-index: 1;"><img src="image5.jpg" alt="Memory 5"></div>
+        <div class="page" data-page="4" style="z-index: 2;"><img src="image4.jpg" alt="Memory 4"></div>
+        <div class="page" data-page="3" style="z-index: 3;"><img src="image3.jpg" alt="Memory 3"></div>
+        <div class="page" data-page="2" style="z-index: 4;"><img src="image2.jpg" alt="Memory 2"></div>
+        <div class="page" data-page="1" style="z-index: 5;"><img src="image1.jpg" alt="Memory 1"></div>
       </div>
     </div>
   </div>
@@ -525,18 +536,64 @@
       document.getElementById('photoPage').style.display = 'flex';
     });
 
-    // Book Page Flip Logic
+    // Emoji Burst Effects Function
+    function triggerEmojiBurst(emojiList) {
+      const count = 30;
+      const startX = window.innerWidth / 2;
+      const startY = window.innerHeight / 2;
+
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('div');
+        el.classList.add('burst-emoji');
+        el.innerText = emojiList[Math.floor(Math.random() * emojiList.length)];
+        
+        const size = Math.random() * 1.5 + 1.2;
+        el.style.fontSize = `${size}rem`;
+        el.style.left = `${startX}px`;
+        el.style.top = `${startY}px`;
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 250 + 100;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+
+        el.style.setProperty('--tx', `${tx}px`);
+        el.style.setProperty('--ty', `${ty}px`);
+
+        document.body.appendChild(el);
+
+        setTimeout(() => el.remove(), 1200);
+      }
+    }
+
+    // Book Page Flip Logic (Hearts -> Stars -> Balloons -> Repeat)
     const pages = document.querySelectorAll('.page');
+    const heartBurst = ['❤️', '💖', '💗', '💓', '💕'];
+    const starBurst = ['⭐', '✨', '🌟', '💫', '⚡'];
+    const balloonBurst = ['🎈', '🎈', '🎈', '🎉', '🎈'];
+
     pages.forEach((page) => {
       page.addEventListener('click', () => {
-        page.classList.add('flipped');
-      });
-    });
+        const pageNum = parseInt(page.getAttribute('data-page'));
 
-    // Reset Book Logic
-    document.getElementById('resetBookBtn').addEventListener('click', () => {
-      pages.forEach((page) => {
-        page.classList.remove('flipped');
+        // Emoji selection sequence based on page
+        if (pageNum === 1 || pageNum === 4) {
+          triggerEmojiBurst(heartBurst);
+        } else if (pageNum === 2 || pageNum === 5) {
+          triggerEmojiBurst(starBurst);
+        } else if (pageNum === 3) {
+          triggerEmojiBurst(balloonBurst);
+        }
+
+        if (pageNum === 5) {
+          // Last page click par reset
+          page.classList.add('flipped');
+          setTimeout(() => {
+            pages.forEach((p) => p.classList.remove('flipped'));
+          }, 400);
+        } else {
+          page.classList.add('flipped');
+        }
       });
     });
   </script>
