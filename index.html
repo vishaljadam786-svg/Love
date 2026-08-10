@@ -263,7 +263,7 @@
     }
 
     /* ---------------------------------------------------- */
-    /* REALISTIC CLOSED & OPEN 3D SKETCHBOOK SECTION        */
+    /* REALISTIC DYNAMIC 3D BOOK (CLOSED & OPEN) SECTION   */
     /* ---------------------------------------------------- */
     #photoPage {
       display: none;
@@ -275,19 +275,28 @@
       max-width: 95vw;
     }
 
+    /* Book Wrapper: Width changes smoothly between closed and open state */
     .sketchbook-wrapper {
       perspective: 2000px;
       margin: 25px auto 10px auto;
-      width: 340px;
-      height: 250px;
+      width: 230px; /* CLOSED state width */
+      height: 310px;
       position: relative;
-      transition: transform 0.8s ease;
+      transition: width 0.6s ease, transform 0.6s ease;
+    }
+
+    /* When OPEN state is active */
+    .sketchbook-wrapper.is-open {
+      width: 340px;
     }
 
     @media (min-width: 480px) {
       .sketchbook-wrapper {
-        width: 460px;
-        height: 310px;
+        width: 260px;
+        height: 340px;
+      }
+      .sketchbook-wrapper.is-open {
+        width: 480px;
       }
     }
 
@@ -296,12 +305,10 @@
       height: 100%;
       position: relative;
       transform-style: preserve-3d;
-      background: #fbf7ef;
-      border-radius: 12px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      background: transparent;
     }
 
-    /* Spiral Binder Rings */
+    /* Spiral Binder Rings (Hidden in closed state, shown when open) */
     .spiral-binding {
       position: absolute;
       top: 0;
@@ -315,6 +322,12 @@
       justify-content: space-around;
       align-items: center;
       pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .sketchbook-wrapper.is-open .spiral-binding {
+      opacity: 1;
     }
 
     .ring {
@@ -325,22 +338,36 @@
       box-shadow: 0 3px 5px rgba(0,0,0,0.5);
     }
 
-    /* Base Page Under All Sheets */
+    /* Left Base and Right Base (Only visible when book is OPEN) */
     .book-left-base, .book-right-base {
       position: absolute;
       top: 0;
       width: 50%;
       height: 100%;
-      background: linear-gradient(135deg, #ff8da1, #ff4d6d);
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
-    .book-left-base { left: 0; border-radius: 10px 0 0 10px; }
-    .book-right-base { right: 0; border-radius: 0 10px 10px 0; background: #fdfaf5; }
+
+    .sketchbook-wrapper.is-open .book-left-base,
+    .sketchbook-wrapper.is-open .book-right-base {
+      opacity: 1;
+    }
+
+    .book-left-base {
+      left: 0;
+      border-radius: 10px 0 0 10px;
+      background: linear-gradient(135deg, #ff8da1, #ff4d6d);
+      box-shadow: inset -5px 0 10px rgba(0,0,0,0.15);
+    }
+
+    .book-right-base {
+      right: 0;
+      border-radius: 0 10px 10px 0;
+      background: #fdfaf5;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      cursor: pointer;
+    }
 
     /* Turning Sheets */
     .sheet {
@@ -351,8 +378,23 @@
       height: 100%;
       transform-origin: left center;
       transform-style: preserve-3d;
-      transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+      transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
       cursor: pointer;
+    }
+
+    /* Front Cover Sheet (FULL COVER when closed) */
+    #sheet1 {
+      width: 100%; /* Spans full width when closed */
+      right: 0;
+      left: 0;
+      transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* When book opens, Sheet 1 turns into 50% width right page */
+    .sketchbook-wrapper.is-open #sheet1 {
+      width: 50%;
+      left: auto;
+      right: 0;
     }
 
     .sheet-face {
@@ -388,18 +430,19 @@
       border-radius: 10px 0 0 10px;
     }
 
-    /* Pink Cover Sheet Specific Styling */
+    /* Closed Cover Design */
     .sheet-face.pink-cover {
       background: linear-gradient(135deg, #ff758f, #ff4d6d);
-      border: 3px solid #ffffff;
+      border: 4px solid #ffffff;
       color: white;
       text-align: center;
-      padding: 20px 10px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 10px 25px rgba(255, 77, 109, 0.5);
+      border-radius: 14px;
+      box-shadow: 0 15px 35px rgba(255, 77, 109, 0.4);
     }
 
     .cover-title {
@@ -429,7 +472,7 @@
     .hint-text {
       font-size: 0.9rem;
       color: #7a1c3d;
-      margin-top: 10px;
+      margin-top: 12px;
       font-weight: 600;
     }
 
@@ -516,7 +559,7 @@
     <h1 style="font-size: 2.2rem;">Our Special Moments 💕</h1>
     <p class="hint-text" id="statusHint">Cover par tap karein book open karne ke liye!</p>
 
-    <div class="sketchbook-wrapper">
+    <div class="sketchbook-wrapper" id="bookWrapper">
       <div class="sketchbook">
         
         <div class="spiral-binding">
@@ -531,11 +574,11 @@
         </div>
 
         <div class="book-left-base"></div>
-        <div class="book-right-base">
+        <div class="book-right-base" id="lastPhotoBase">
           <img src="image5.jpg" alt="Memory 5" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">
         </div>
 
-        <div class="sheet" id="sheet3">
+        <div class="sheet" id="sheet3" style="z-index: 1;">
           <div class="sheet-face front">
             <img src="image3.jpg" alt="Memory 3">
           </div>
@@ -544,7 +587,7 @@
           </div>
         </div>
 
-        <div class="sheet" id="sheet2">
+        <div class="sheet" id="sheet2" style="z-index: 2;">
           <div class="sheet-face front">
             <img src="image1.jpg" alt="Memory 1">
           </div>
@@ -553,14 +596,14 @@
           </div>
         </div>
 
-        <div class="sheet" id="sheet1">
+        <div class="sheet" id="sheet1" style="z-index: 3;">
           <div class="sheet-face front pink-cover">
             <div style="font-size: 2.8rem; margin-bottom: 6px;">🌸</div>
             <div class="cover-title">photos of my rasmalai</div>
             <div class="cover-subtitle">Tap to Open 💕</div>
           </div>
           <div class="sheet-face back" style="background:#fce4ec; display:flex; align-items:center; justify-content:center;">
-            <div style="color:#8b0032; font-style:italic; font-size:1rem; font-weight:600;">Welcome to our memories ❤️</div>
+            <div style="color:#8b0032; font-style:italic; font-size:1rem; font-weight:600; text-align:center;">Welcome to our memories ❤️</div>
           </div>
         </div>
 
@@ -762,60 +805,91 @@
     }
 
     // 3D Realistic Page Flip & Closed/Open State Management
-    const sheets = document.querySelectorAll('.sheet');
-    const bookRightBase = document.querySelector('.book-right-base');
+    const bookWrapper = document.getElementById('bookWrapper');
+    const sheet1 = document.getElementById('sheet1');
+    const sheet2 = document.getElementById('sheet2');
+    const sheet3 = document.getElementById('sheet3');
+    const lastPhotoBase = document.getElementById('lastPhotoBase');
     const statusHint = document.getElementById('statusHint');
+
     const heartBurst = ['❤️', '💖', '💗', '💓', '💕'];
     const starBurst = ['⭐', '✨', '🌟', '💫', '⚡'];
 
-    const totalSheets = sheets.length;
+    // Close Book Fully Function
+    function closeBookFully() {
+      bookWrapper.classList.remove('is-open');
+      sheet1.classList.remove('flipped');
+      sheet2.classList.remove('flipped');
+      sheet3.classList.remove('flipped');
 
-    // Reset Book to Completely Closed State
-    function resetToClosedBook() {
-      sheets.forEach((sheet, idx) => {
-        sheet.classList.remove('flipped');
-        sheet.style.zIndex = totalSheets - idx;
-      });
+      sheet1.style.zIndex = '3';
+      sheet2.style.zIndex = '2';
+      sheet3.style.zIndex = '1';
+
       statusHint.innerText = "Cover par tap karein book open karne ke liye!";
     }
 
-    // Initial setup
-    resetToClosedBook();
+    // Sheet 1 (Pink Cover) Click logic
+    sheet1.addEventListener('click', (e) => {
+      const clickX = e.clientX || window.innerWidth / 2;
+      const clickY = e.clientY || window.innerHeight / 2;
 
-    sheets.forEach((sheet, index) => {
-      sheet.addEventListener('click', (e) => {
-        const clickX = e.clientX || window.innerWidth / 2;
-        const clickY = e.clientY || window.innerHeight / 2;
+      if (!bookWrapper.classList.contains('is-open')) {
+        // Open the book
+        bookWrapper.classList.add('is-open');
+        statusHint.innerText = "Photo par tap karein page palatne ke liye!";
+        triggerEmojiBurst(heartBurst, clickX, clickY);
 
-        if (!sheet.classList.contains('flipped')) {
-          sheet.classList.add('flipped');
-          statusHint.innerText = "Photo par tap karein page palatne ke liye!";
-          
-          setTimeout(() => {
-            sheet.style.zIndex = index + 1;
-          }, 300);
-
-          triggerEmojiBurst(index === 0 ? heartBurst : starBurst, clickX, clickY);
-        } else {
-          // If flipping backward
-          sheet.classList.remove('flipped');
-          
-          setTimeout(() => {
-            sheet.style.zIndex = totalSheets - index;
-          }, 300);
-
-          triggerEmojiBurst(heartBurst, clickX, clickY);
-        }
-      });
+        setTimeout(() => {
+          sheet1.classList.add('flipped');
+          sheet1.style.zIndex = '1';
+        }, 300);
+      } else {
+        // Close book back to cover
+        closeBookFully();
+        triggerEmojiBurst(heartBurst, clickX, clickY);
+      }
     });
 
-    // Last photo (book right base) tap to close back to front cover
-    bookRightBase.addEventListener('click', (e) => {
+    // Sheet 2 Click Logic
+    sheet2.addEventListener('click', (e) => {
+      const clickX = e.clientX || window.innerWidth / 2;
+      const clickY = e.clientY || window.innerHeight / 2;
+
+      if (!sheet2.classList.contains('flipped')) {
+        sheet2.classList.add('flipped');
+        setTimeout(() => { sheet2.style.zIndex = '2'; }, 300);
+        triggerEmojiBurst(starBurst, clickX, clickY);
+      } else {
+        sheet2.classList.remove('flipped');
+        setTimeout(() => { sheet2.style.zIndex = '2'; }, 300);
+        triggerEmojiBurst(heartBurst, clickX, clickY);
+      }
+    });
+
+    // Sheet 3 Click Logic
+    sheet3.addEventListener('click', (e) => {
+      const clickX = e.clientX || window.innerWidth / 2;
+      const clickY = e.clientY || window.innerHeight / 2;
+
+      if (!sheet3.classList.contains('flipped')) {
+        sheet3.classList.add('flipped');
+        setTimeout(() => { sheet3.style.zIndex = '3'; }, 300);
+        triggerEmojiBurst(starBurst, clickX, clickY);
+      } else {
+        sheet3.classList.remove('flipped');
+        setTimeout(() => { sheet3.style.zIndex = '1'; }, 300);
+        triggerEmojiBurst(heartBurst, clickX, clickY);
+      }
+    });
+
+    // Last Photo Base Click -> Close Back to Cover
+    lastPhotoBase.addEventListener('click', (e) => {
       const clickX = e.clientX || window.innerWidth / 2;
       const clickY = e.clientY || window.innerHeight / 2;
       
       triggerEmojiBurst(heartBurst, clickX, clickY);
-      resetToClosedBook();
+      closeBookFully();
     });
   </script>
 </body>
