@@ -300,12 +300,12 @@
       margin-top: 5px;
     }
 
-    /* High Z-Index Burst Emoji Particles */
+    /* Slowed Down Burst Emoji Particles (1.5s Duration) */
     .burst-emoji {
       position: fixed;
       pointer-events: none;
       z-index: 9999;
-      animation: burstFly 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: burstFly 1.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
       user-select: none;
     }
 
@@ -314,8 +314,11 @@
         transform: translate(-50%, -50%) scale(0.4);
         opacity: 1;
       }
+      70% {
+        opacity: 1;
+      }
       100% {
-        transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.5);
+        transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.6);
         opacity: 0;
       }
     }
@@ -534,7 +537,7 @@
       document.getElementById('photoPage').style.display = 'flex';
     });
 
-    // Emoji Burst Effects Function (Tap Location Centered)
+    // Emoji Burst Effects Function (Slow 1.5s Burst)
     function triggerEmojiBurst(emojiList, clickX, clickY) {
       const count = 25;
       const startX = clickX || (window.innerWidth / 2);
@@ -551,7 +554,7 @@
         el.style.top = `${startY}px`;
 
         const angle = Math.random() * Math.PI * 2;
-        const distance = Math.random() * 200 + 80;
+        const distance = Math.random() * 220 + 80;
         const tx = Math.cos(angle) * distance;
         const ty = Math.sin(angle) * distance;
 
@@ -560,7 +563,7 @@
 
         document.body.appendChild(el);
 
-        setTimeout(() => el.remove(), 1200);
+        setTimeout(() => el.remove(), 1500);
       }
     }
 
