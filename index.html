@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Be My Rasmlai?</title>
+  <title>Be My Girlfriend?</title>
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -58,36 +59,21 @@
     }
 
     @keyframes topPulseGlow {
-      0% {
-        transform: translateX(-50%) scale(1);
-        box-shadow: 0 0 0 0 rgba(255, 0, 84, 0.7);
-      }
-      70% {
-        transform: translateX(-50%) scale(1.06);
-        box-shadow: 0 0 0 16px rgba(255, 0, 84, 0);
-      }
-      100% {
-        transform: translateX(-50%) scale(1);
-        box-shadow: 0 0 0 0 rgba(255, 0, 84, 0);
-      }
+      0% { transform: translateX(-50%) scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 84, 0.7); }
+      70% { transform: translateX(-50%) scale(1.06); box-shadow: 0 0 0 16px rgba(255, 0, 84, 0); }
+      100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 84, 0); }
     }
 
-    /* Floating Hearts Background Container */
+    /* Floating Hearts Container */
     #hearts-container {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 1;
     }
 
     .heart {
-      position: absolute;
-      bottom: -50px;
-      user-select: none;
-      animation: floatUp linear infinite;
+      position: absolute; bottom: -50px;
+      user-select: none; animation: floatUp linear infinite;
     }
 
     @keyframes floatUp {
@@ -99,24 +85,15 @@
 
     /* Main Card Layout */
     .card {
-      position: relative;
-      z-index: 2;
-      padding: 1rem;
-      max-width: 90vw;
-      width: 450px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      position: relative; z-index: 2; padding: 1rem;
+      max-width: 90vw; width: 450px; display: flex;
+      flex-direction: column; align-items: center; justify-content: center;
       margin-top: 40px;
     }
 
-    /* Bouncing Bear Emoji */
     .bear {
-      font-size: 5rem;
-      display: inline-block;
-      animation: bounce 1.5s infinite ease-in-out;
-      margin-bottom: 0.5rem;
+      font-size: 5rem; display: inline-block;
+      animation: bounce 1.5s infinite ease-in-out; margin-bottom: 0.5rem;
       user-select: none;
     }
 
@@ -127,101 +104,64 @@
 
     h1 {
       font-family: 'Dancing Script', cursive;
-      font-size: 2.8rem;
-      color: #8b0032;
-      margin-bottom: 0.5rem;
-      line-height: 1.2;
+      font-size: 2.8rem; color: #8b0032;
+      margin-bottom: 0.5rem; line-height: 1.2;
     }
 
     .subtitle {
-      font-style: italic;
-      color: #5a0020;
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
+      font-style: italic; color: #5a0020;
+      font-size: 1rem; margin-bottom: 1.5rem;
     }
 
     .quote {
-      font-size: 0.85rem;
-      color: #7a1c3d;
-      margin-top: 2rem;
+      font-size: 0.85rem; color: #7a1c3d; margin-top: 2rem;
     }
 
     /* Buttons */
     .button-group {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 1rem;
-      width: 100%;
+      display: flex; flex-direction: row; align-items: center;
+      justify-content: center; gap: 40px; margin-top: 1rem; width: 100%;
     }
 
     .btn {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      user-select: none;
-      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: 'Poppins', sans-serif; font-size: 1.1rem;
+      font-weight: 600; border: none; cursor: pointer;
+      user-select: none; transition: transform 0.2s, box-shadow 0.2s;
     }
 
     #yesBtn, .next-btn {
       background: linear-gradient(45deg, #ff0040, #ff4d6d);
-      color: white;
-      padding: 12px 30px;
-      border-radius: 50px;
-      box-shadow: 0 4px 15px rgba(255, 0, 64, 0.4);
-      margin-top: 15px;
+      color: white; padding: 12px 30px; border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(255, 0, 64, 0.4); margin-top: 15px;
     }
 
     #yesBtn:hover, .next-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 25px rgba(255, 0, 64, 0.8);
+      transform: scale(1.08); box-shadow: 0 0 25px rgba(255, 0, 64, 0.8);
     }
 
     #noBtn {
-      background-color: white;
-      color: #ff0040;
-      border: 2px solid #ff0040;
-      padding: 8px 20px;
-      border-radius: 50px;
-      z-index: 100;
+      background-color: white; color: #ff0040;
+      border: 2px solid #ff0040; padding: 8px 20px;
+      border-radius: 50px; z-index: 100;
     }
 
     /* Toast Notification */
     #toast {
-      position: fixed;
-      top: 15%;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(139, 0, 50, 0.85);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 1000;
+      position: fixed; top: 15%; left: 50%; transform: translateX(-50%);
+      background-color: rgba(139, 0, 50, 0.85); color: white;
+      padding: 10px 20px; border-radius: 20px; font-size: 0.9rem;
+      pointer-events: none; opacity: 0; transition: opacity 0.3s ease; z-index: 1000;
     }
 
     /* Celebration Container */
     #celebration {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
+      display: none; flex-direction: column; align-items: center;
+      justify-content: center; z-index: 10;
     }
 
     .yay-text {
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: #8b0032;
-      animation: pulse 1s infinite alternate;
-      margin-bottom: 0.8rem;
+      font-size: 1.8rem; font-weight: 600; color: #8b0032;
+      animation: pulse 1s infinite alternate; margin-bottom: 0.8rem;
     }
 
     @keyframes pulse {
@@ -230,9 +170,7 @@
     }
 
     .spinning-emoji {
-      font-size: 3.5rem;
-      animation: spin 3s infinite linear;
-      margin-bottom: 0.8rem;
+      font-size: 3.5rem; animation: spin 3s infinite linear; margin-bottom: 0.8rem;
     }
 
     @keyframes spin {
@@ -241,272 +179,156 @@
     }
 
     .final-message {
-      font-size: 1.1rem;
-      color: #5a0020;
-      margin-bottom: 1.2rem;
+      font-size: 1.1rem; color: #5a0020; margin-bottom: 1.2rem;
     }
 
     .video-wrapper {
-      width: 280px;
-      height: 280px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(139, 0, 50, 0.25);
+      width: 280px; height: 280px; border-radius: 20px;
+      overflow: hidden; box-shadow: 0 8px 20px rgba(139, 0, 50, 0.25);
       position: relative;
     }
 
     .celebration-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(1.38);
+      width: 100%; height: 100%; object-fit: cover; transform: scale(1.38);
     }
 
-    /* ---------------------------------------------------- */
-    /* REALISTIC DYNAMIC 3D BOOK (CLOSED & OPEN) SECTION   */
-    /* ---------------------------------------------------- */
+    /* 3D BOOK SECTION */
     #photoPage {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-      width: 100%;
-      max-width: 95vw;
+      display: none; flex-direction: column; align-items: center;
+      justify-content: center; z-index: 10; width: 100%; max-width: 95vw;
     }
 
-    /* Book Wrapper: Width changes smoothly between closed and open state */
     .sketchbook-wrapper {
-      perspective: 2000px;
-      margin: 25px auto 10px auto;
-      width: 230px; /* CLOSED state width */
-      height: 310px;
-      position: relative;
+      perspective: 2000px; margin: 25px auto 10px auto;
+      width: 230px; height: 310px; position: relative;
       transition: width 0.6s ease, transform 0.6s ease;
     }
 
-    /* When OPEN state is active */
-    .sketchbook-wrapper.is-open {
-      width: 340px;
-    }
+    .sketchbook-wrapper.is-open { width: 340px; }
 
     @media (min-width: 480px) {
-      .sketchbook-wrapper {
-        width: 260px;
-        height: 340px;
-      }
-      .sketchbook-wrapper.is-open {
-        width: 480px;
-      }
+      .sketchbook-wrapper { width: 260px; height: 340px; }
+      .sketchbook-wrapper.is-open { width: 480px; }
     }
 
     .sketchbook {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      background: transparent;
+      width: 100%; height: 100%; position: relative;
+      transform-style: preserve-3d; background: transparent;
     }
 
-    /* Spiral Binder Rings (Hidden in closed state, shown when open) */
     .spiral-binding {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 24px;
-      height: 100%;
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.4s ease;
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 24px; height: 100%; z-index: 100; display: flex;
+      flex-direction: column; justify-content: space-around; align-items: center;
+      pointer-events: none; opacity: 0; transition: opacity 0.4s ease;
     }
 
-    .sketchbook-wrapper.is-open .spiral-binding {
-      opacity: 1;
-    }
+    .sketchbook-wrapper.is-open .spiral-binding { opacity: 1; }
 
     .ring {
-      width: 26px;
-      height: 8px;
+      width: 26px; height: 8px;
       background: linear-gradient(90deg, #333, #eee, #111);
-      border-radius: 10px;
-      box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+      border-radius: 10px; box-shadow: 0 3px 5px rgba(0,0,0,0.5);
     }
 
-    /* Left Base and Right Base (Only visible when book is OPEN) */
     .book-left-base, .book-right-base {
-      position: absolute;
-      top: 0;
-      width: 50%;
-      height: 100%;
-      overflow: hidden;
-      opacity: 0;
-      transition: opacity 0.4s ease;
+      position: absolute; top: 0; width: 50%; height: 100%;
+      overflow: hidden; opacity: 0; transition: opacity 0.4s ease;
     }
 
     .sketchbook-wrapper.is-open .book-left-base,
-    .sketchbook-wrapper.is-open .book-right-base {
-      opacity: 1;
-    }
+    .sketchbook-wrapper.is-open .book-right-base { opacity: 1; }
 
     .book-left-base {
-      left: 0;
-      border-radius: 10px 0 0 10px;
+      left: 0; border-radius: 10px 0 0 10px;
       background: linear-gradient(135deg, #ff8da1, #ff4d6d);
       box-shadow: inset -5px 0 10px rgba(0,0,0,0.15);
     }
 
     .book-right-base {
-      right: 0;
-      border-radius: 0 10px 10px 0;
-      background: #fdfaf5;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      right: 0; border-radius: 0 10px 10px 0;
+      background: #fdfaf5; box-shadow: 0 15px 35px rgba(0,0,0,0.25);
       cursor: pointer;
     }
 
-    /* Turning Sheets */
     .sheet {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 50%;
-      height: 100%;
-      transform-origin: left center;
-      transform-style: preserve-3d;
+      position: absolute; top: 0; right: 0; width: 50%; height: 100%;
+      transform-origin: left center; transform-style: preserve-3d;
       transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
       cursor: pointer;
     }
 
-    /* Front Cover Sheet (FULL COVER when closed) */
-    #sheet1 {
-      width: 100%; /* Spans full width when closed */
-      right: 0;
-      left: 0;
+    #sheet-cover {
+      width: 100%; right: 0; left: 0;
       transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
-    /* When book opens, Sheet 1 turns into 50% width right page */
-    .sketchbook-wrapper.is-open #sheet1 {
-      width: 50%;
-      left: auto;
-      right: 0;
+    .sketchbook-wrapper.is-open #sheet-cover {
+      width: 50%; left: auto; right: 0;
     }
 
     .sheet-face {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      background: #fdfaf5;
-      padding: 8px;
-      border: 1px solid #e2d7c7;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: inset 0 0 15px rgba(0,0,0,0.08);
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      background: #fdfaf5; padding: 8px; border: 1px solid #e2d7c7;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; box-shadow: inset 0 0 15px rgba(0,0,0,0.08);
       border-radius: 0 10px 10px 0;
     }
 
     .sheet-face img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 6px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      width: 100%; height: 100%; object-fit: cover;
+      border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
       pointer-events: none;
     }
 
     .sheet-face.back {
-      transform: rotateY(180deg);
-      border-radius: 10px 0 0 10px;
+      transform: rotateY(180deg); border-radius: 10px 0 0 10px;
     }
 
-    /* Closed Cover Design */
     .sheet-face.pink-cover {
       background: linear-gradient(135deg, #ff758f, #ff4d6d);
-      border: 4px solid #ffffff;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-radius: 14px;
+      border: 4px solid #ffffff; color: white; text-align: center;
+      padding: 20px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; border-radius: 14px;
       box-shadow: 0 15px 35px rgba(255, 77, 109, 0.4);
     }
 
     .cover-title {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.2rem;
-      color: #ffffff;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
-      line-height: 1.2;
-      margin-bottom: 12px;
+      font-family: 'Dancing Script', cursive; font-size: 2.2rem;
+      color: #ffffff; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+      line-height: 1.2; margin-bottom: 12px;
     }
 
     .cover-subtitle {
-      font-size: 0.85rem;
-      font-weight: 600;
-      background: rgba(255, 255, 255, 0.3);
-      padding: 6px 14px;
-      border-radius: 20px;
-      letter-spacing: 0.5px;
+      font-size: 0.85rem; font-weight: 600;
+      background: rgba(255, 255, 255, 0.3); padding: 6px 14px;
+      border-radius: 20px; letter-spacing: 0.5px;
       animation: pulse 1.5s infinite alternate;
     }
 
-    /* Flipped State */
-    .sheet.flipped {
-      transform: rotateY(-180deg);
-    }
+    .sheet.flipped { transform: rotateY(-180deg); }
 
     .hint-text {
-      font-size: 0.9rem;
-      color: #7a1c3d;
-      margin-top: 12px;
-      font-weight: 600;
+      font-size: 0.9rem; color: #7a1c3d; margin-top: 12px; font-weight: 600;
     }
 
     /* Burst Emoji Particles */
     .burst-emoji {
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      animation: burstFly 1.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-      user-select: none;
+      position: fixed; pointer-events: none; z-index: 9999;
+      animation: burstFly 1.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards; user-select: none;
     }
 
     @keyframes burstFly {
-      0% {
-        transform: translate(-50%, -50%) scale(0.4);
-        opacity: 1;
-      }
-      70% {
-        opacity: 1;
-      }
-      100% {
-        transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.6);
-        opacity: 0;
-      }
+      0% { transform: translate(-50%, -50%) scale(0.4); opacity: 1; }
+      70% { opacity: 1; }
+      100% { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.6); opacity: 0; }
     }
 
     /* Confetti */
     .confetti {
-      position: fixed;
-      width: 10px;
-      height: 10px;
-      z-index: 99;
-      pointer-events: none;
-      animation: fall linear forwards;
+      position: fixed; width: 10px; height: 10px; z-index: 99;
+      pointer-events: none; animation: fall linear forwards;
     }
 
     @keyframes fall {
@@ -517,6 +339,7 @@
 </head>
 <body>
 
+  <!-- Audio -->
   <audio id="bgMusic" loop preload="auto">
     <source src="song.mp3" type="audio/mpeg">
   </audio>
@@ -524,12 +347,12 @@
   <button id="musicBtn" class="highlight-music-btn">🎵 Play Song for Vibe ✨</button>
 
   <div id="hearts-container"></div>
-
   <div id="toast"></div>
 
+  <!-- Proposal Card -->
   <div class="card" id="proposalCard">
     <div class="bear">🧸</div>
-    <h1>Will You Be My Rasmlai, Monika?</h1>
+    <h1>Will You Be My Girlfriend, Monika?</h1>
     <p class="subtitle">I've been gathering courage to ask you this...</p>
 
     <div class="button-group">
@@ -540,6 +363,7 @@
     <p class="quote">"Every love story is beautiful, but ours is my favourite"</p>
   </div>
 
+  <!-- Celebration Card -->
   <div class="card" id="celebration">
     <div class="yay-text">YAYYYY I KNOW YOU LOVE ME ☺️!!</div>
     <div class="spinning-emoji">💖</div>
@@ -548,55 +372,32 @@
     <div class="video-wrapper">
       <video class="celebration-video" autoplay loop muted playsinline controls>
         <source src="video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
       </video>
     </div>
 
     <button class="btn next-btn" id="goToPhotosBtn">Our Memories 📖</button>
   </div>
 
+  <!-- 3D Photo Book -->
   <div class="card" id="photoPage">
     <h1 style="font-size: 2.2rem;">Our Special Moments 💕</h1>
     <p class="hint-text" id="statusHint">Cover par tap karein book open karne ke liye!</p>
 
     <div class="sketchbook-wrapper" id="bookWrapper">
-      <div class="sketchbook">
+      <div class="sketchbook" id="sketchbook">
         
         <div class="spiral-binding">
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
+          <div class="ring"></div><div class="ring"></div>
+          <div class="ring"></div><div class="ring"></div>
+          <div class="ring"></div><div class="ring"></div>
+          <div class="ring"></div><div class="ring"></div>
         </div>
 
         <div class="book-left-base"></div>
-        <div class="book-right-base" id="lastPhotoBase">
-          <img src="image5.jpg" alt="Memory 5" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">
-        </div>
+        <div class="book-right-base" id="lastPhotoBase"></div>
 
-        <div class="sheet" id="sheet3" style="z-index: 1;">
-          <div class="sheet-face front">
-            <img src="image3.jpg" alt="Memory 3">
-          </div>
-          <div class="sheet-face back">
-            <img src="image4.jpg" alt="Memory 4">
-          </div>
-        </div>
-
-        <div class="sheet" id="sheet2" style="z-index: 2;">
-          <div class="sheet-face front">
-            <img src="image1.jpg" alt="Memory 1">
-          </div>
-          <div class="sheet-face back">
-            <img src="image2.jpg" alt="Memory 2">
-          </div>
-        </div>
-
-        <div class="sheet" id="sheet1" style="z-index: 3;">
+        <!-- Cover Sheet -->
+        <div class="sheet" id="sheet-cover" style="z-index: 999;">
           <div class="sheet-face front pink-cover">
             <div style="font-size: 2.8rem; margin-bottom: 6px;">🌸</div>
             <div class="cover-title">photos of my rasmalai</div>
@@ -612,285 +413,257 @@
   </div>
 
   <script>
+    // Configured with your Repository details
+    const GITHUB_USERNAME = "vishaljadam786-svg";
+    const REPO_NAME = "Love";
+    const FOLDER_PATH = "photos";
+
     const bgMusic = document.getElementById('bgMusic');
     const musicBtn = document.getElementById('musicBtn');
 
     function toggleMusic() {
       if (bgMusic.paused) {
-        bgMusic.play().then(() => {
-          musicBtn.innerHTML = '⏸️ Pause Song 🎶';
-        }).catch(err => console.log('Audio play error:', err));
+        bgMusic.play().then(() => { musicBtn.innerHTML = '⏸️ Pause Song 🎶'; }).catch(e => console.log(e));
       } else {
         bgMusic.pause();
         musicBtn.innerHTML = '🎵 Play Song for Vibe ✨';
       }
     }
-
     musicBtn.addEventListener('click', toggleMusic);
 
-    // Create Floating Hearts
+    // Floating Hearts
     const heartsContainer = document.getElementById('hearts-container');
     const heartEmojis = ['❤️', '💖', '💗', '💓', '💕'];
-    
     function createHearts() {
       for (let i = 0; i < 15; i++) {
         const heart = document.createElement('div');
         heart.classList.add('heart');
         heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-        
-        const size = Math.random() * 1.5 + 1;
-        const left = Math.random() * 100;
-        const duration = Math.random() * 4 + 4;
-        const delay = Math.random() * 5;
-
-        heart.style.fontSize = `${size}rem`;
-        heart.style.left = `${left}%`;
-        heart.style.animationDuration = `${duration}s`;
-        heart.style.animationDelay = `${delay}s`;
-
+        heart.style.fontSize = `${Math.random() * 1.5 + 1}rem`;
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.animationDuration = `${Math.random() * 4 + 4}s`;
+        heart.style.animationDelay = `${Math.random() * 5}s`;
         heartsContainer.appendChild(heart);
       }
     }
     createHearts();
 
-    // No Button Run Away Logic
+    // Runaway No Button
     const noBtn = document.getElementById('noBtn');
     const yesBtn = document.getElementById('yesBtn');
     const toast = document.getElementById('toast');
-
-    const cheekyMessages = [
-      "Nope, not an option!",
-      "Try again!",
-      "You sure about that?",
-      "Not happening!",
-      "Think again!"
-    ];
+    const cheekyMessages = ["Nope, not an option!", "Try again!", "You sure about that?", "Not happening!", "Think again!"];
     let messageIndex = 0;
 
     function showToast(msg) {
-      toast.innerText = msg;
-      toast.style.opacity = '1';
-      setTimeout(() => {
-        toast.style.opacity = '0';
-      }, 1500);
+      toast.innerText = msg; toast.style.opacity = '1';
+      setTimeout(() => { toast.style.opacity = '0'; }, 1500);
     }
 
     function moveNoButton() {
       showToast(cheekyMessages[messageIndex]);
       messageIndex = (messageIndex + 1) % cheekyMessages.length;
-
       const yesRect = yesBtn.getBoundingClientRect();
-      const btnWidth = noBtn.offsetWidth || 80;
-      const btnHeight = noBtn.offsetHeight || 40;
+      const btnWidth = noBtn.offsetWidth || 80, btnHeight = noBtn.offsetHeight || 40;
+      const padding = 20, maxX = window.innerWidth - btnWidth - padding, maxY = window.innerHeight - btnHeight - padding;
 
-      const padding = 20;
-      const maxX = window.innerWidth - btnWidth - padding;
-      const maxY = window.innerHeight - btnHeight - padding;
-
-      let newX, newY;
-      let overlaps = true;
-      let attempts = 0;
-
+      let newX, newY, overlaps = true, attempts = 0;
       while (overlaps && attempts < 100) {
         newX = Math.max(padding, Math.floor(Math.random() * maxX));
         newY = Math.max(padding, Math.floor(Math.random() * maxY));
-
         const buffer = 40;
-        const noRectTemp = {
-          left: newX - buffer,
-          right: newX + btnWidth + buffer,
-          top: newY - buffer,
-          bottom: newY + btnHeight + buffer
-        };
-
-        const isOverlapping = !(
-          noRectTemp.right < yesRect.left ||
-          noRectTemp.left > yesRect.right ||
-          noRectTemp.bottom < yesRect.top ||
-          noRectTemp.top > yesRect.bottom
-        );
-
-        if (!isOverlapping) {
+        const noRectTemp = { left: newX - buffer, right: newX + btnWidth + buffer, top: newY - buffer, bottom: newY + btnHeight + buffer };
+        if (!(noRectTemp.right < yesRect.left || noRectTemp.left > yesRect.right || noRectTemp.bottom < yesRect.top || noRectTemp.top > yesRect.bottom)) {
           overlaps = false;
         }
         attempts++;
       }
-
-      noBtn.style.position = 'fixed';
-      noBtn.style.left = `${newX}px`;
-      noBtn.style.top = `${newY}px`;
+      noBtn.style.position = 'fixed'; noBtn.style.left = `${newX}px`; noBtn.style.top = `${newY}px`;
     }
 
     noBtn.addEventListener('mouseover', moveNoButton);
-    noBtn.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      moveNoButton();
-    });
-    noBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      moveNoButton();
-    });
+    noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveNoButton(); });
+    noBtn.addEventListener('click', (e) => { e.preventDefault(); moveNoButton(); });
 
-    // Yes Button Click - Celebration & Auto Play Audio
+    // Yes Click
     yesBtn.addEventListener('click', () => {
       if (bgMusic.paused) {
-        bgMusic.play().then(() => {
-          musicBtn.innerHTML = '⏸️ Pause Song 🎶';
-        }).catch(e => console.log('Autoplay blocked:', e));
+        bgMusic.play().then(() => { musicBtn.innerHTML = '⏸️ Pause Song 🎶'; }).catch(e => console.log(e));
       }
-
       document.getElementById('proposalCard').style.display = 'none';
       heartsContainer.innerHTML = '';
-
       const celebration = document.getElementById('celebration');
       celebration.style.display = 'flex';
-
       const video = celebration.querySelector('video');
-      if (video) {
-        video.play().catch(e => console.log('Video autoplay blocked:', e));
-      }
+      if (video) video.play().catch(e => console.log(e));
 
       const colors = ['#ff0054', '#9e0059', '#ffbd00', '#ff5400', '#390099', '#ffffff', '#ff4d6d'];
       for (let i = 0; i < 120; i++) {
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
-        
         confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         confetti.style.left = `${Math.random() * 100}vw`;
         confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
         confetti.style.animationDelay = `${Math.random() * 0.5}s`;
-        
-        if (Math.random() > 0.5) {
-          confetti.style.borderRadius = '50%';
-        }
-
+        if (Math.random() > 0.5) confetti.style.borderRadius = '50%';
         document.body.appendChild(confetti);
       }
     });
 
-    // Go to Photos Page
     document.getElementById('goToPhotosBtn').addEventListener('click', () => {
       document.getElementById('celebration').style.display = 'none';
       document.getElementById('photoPage').style.display = 'flex';
     });
 
-    // Emoji Burst Effects Function
     function triggerEmojiBurst(emojiList, clickX, clickY) {
-      const count = 25;
-      const startX = clickX || (window.innerWidth / 2);
-      const startY = clickY || (window.innerHeight / 2);
-
+      const count = 25, startX = clickX || (window.innerWidth / 2), startY = clickY || (window.innerHeight / 2);
       for (let i = 0; i < count; i++) {
         const el = document.createElement('div');
         el.classList.add('burst-emoji');
         el.innerText = emojiList[Math.floor(Math.random() * emojiList.length)];
-        
-        const size = Math.random() * 1.5 + 1.2;
-        el.style.fontSize = `${size}rem`;
-        el.style.left = `${startX}px`;
-        el.style.top = `${startY}px`;
-
-        const angle = Math.random() * Math.PI * 2;
-        const distance = Math.random() * 220 + 80;
-        const tx = Math.cos(angle) * distance;
-        const ty = Math.sin(angle) * distance;
-
-        el.style.setProperty('--tx', `${tx}px`);
-        el.style.setProperty('--ty', `${ty}px`);
-
+        el.style.fontSize = `${Math.random() * 1.5 + 1.2}rem`;
+        el.style.left = `${startX}px`; el.style.top = `${startY}px`;
+        const angle = Math.random() * Math.PI * 2, distance = Math.random() * 220 + 80;
+        el.style.setProperty('--tx', `${Math.cos(angle) * distance}px`);
+        el.style.setProperty('--ty', `${Math.sin(angle) * distance}px`);
         document.body.appendChild(el);
-
         setTimeout(() => el.remove(), 1500);
       }
     }
 
-    // 3D Realistic Page Flip & Closed/Open State Management
+    // Auto load photos from GitHub Repo
+    const heartBurst = ['❤️', '💖', '💗', '💓', '💕'];
+    const starBurst = ['⭐', '✨', '🌟', '💫', '⚡'];
     const bookWrapper = document.getElementById('bookWrapper');
-    const sheet1 = document.getElementById('sheet1');
-    const sheet2 = document.getElementById('sheet2');
-    const sheet3 = document.getElementById('sheet3');
+    const sketchbook = document.getElementById('sketchbook');
+    const sheetCover = document.getElementById('sheet-cover');
     const lastPhotoBase = document.getElementById('lastPhotoBase');
     const statusHint = document.getElementById('statusHint');
 
-    const heartBurst = ['❤️', '💖', '💗', '💓', '💕'];
-    const starBurst = ['⭐', '✨', '🌟', '💫', '⚡'];
+    let allSheets = [];
 
-    // Close Book Fully Function
     function closeBookFully() {
       bookWrapper.classList.remove('is-open');
-      sheet1.classList.remove('flipped');
-      sheet2.classList.remove('flipped');
-      sheet3.classList.remove('flipped');
-
-      sheet1.style.zIndex = '3';
-      sheet2.style.zIndex = '2';
-      sheet3.style.zIndex = '1';
-
+      allSheets.forEach(sheet => sheet.classList.remove('flipped'));
+      sheetCover.classList.remove('flipped');
+      resetZIndexes();
       statusHint.innerText = "Cover par tap karein book open karne ke liye!";
     }
 
-    // Sheet 1 (Pink Cover) Click logic
-    sheet1.addEventListener('click', (e) => {
-      const clickX = e.clientX || window.innerWidth / 2;
-      const clickY = e.clientY || window.innerHeight / 2;
+    function resetZIndexes() {
+      allSheets.forEach((sheet, idx) => {
+        sheet.style.zIndex = allSheets.length - idx;
+      });
+      sheetCover.style.zIndex = allSheets.length + 10;
+    }
 
-      if (!bookWrapper.classList.contains('is-open')) {
-        // Open the book
-        bookWrapper.classList.add('is-open');
-        statusHint.innerText = "Photo par tap karein page palatne ke liye!";
-        triggerEmojiBurst(heartBurst, clickX, clickY);
+    async function loadGitHubPhotos() {
+      try {
+        const apiUrl = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/${FOLDER_PATH}`;
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error("Photos folder check karein");
+        const files = await response.json();
 
-        setTimeout(() => {
-          sheet1.classList.add('flipped');
-          sheet1.style.zIndex = '1';
-        }, 300);
+        const imageUrls = files
+          .filter(file => file.type === "file" && /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name))
+          .map(file => file.download_url);
+
+        if (imageUrls.length === 0) {
+          statusHint.innerText = "'photos' folder me koi photo nahi mili!";
+          return;
+        }
+
+        buildBookPages(imageUrls);
+      } catch (error) {
+        console.error(error);
+        statusHint.innerText = "GitHub par 'photos' naam ka folder banayein aur images daalein!";
+      }
+    }
+
+    function buildBookPages(images) {
+      let imageIndex = 0;
+      let sheetCounter = 1;
+
+      while (imageIndex < images.length - 1) {
+        const frontImg = images[imageIndex];
+        const backImg = images[imageIndex + 1];
+
+        const sheetEl = document.createElement('div');
+        sheetEl.classList.add('sheet');
+        sheetEl.id = `sheet-dyn-${sheetCounter}`;
+
+        sheetEl.innerHTML = `
+          <div class="sheet-face front">
+            <img src="${frontImg}" alt="Memory">
+          </div>
+          <div class="sheet-face back">
+            <img src="${backImg}" alt="Memory">
+          </div>
+        `;
+
+        sketchbook.insertBefore(sheetEl, sheetCover);
+        allSheets.push(sheetEl);
+
+        imageIndex += 2;
+        sheetCounter++;
+      }
+
+      if (imageIndex < images.length) {
+        lastPhotoBase.innerHTML = `<img src="${images[imageIndex]}" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">`;
       } else {
-        // Close book back to cover
+        lastPhotoBase.innerHTML = `<div style="display:flex; align-items:center; justify-content:center; height:100%; font-weight:600; color:#8b0032;">The End 💕</div>`;
+      }
+
+      resetZIndexes();
+      attachBookListeners();
+    }
+
+    function attachBookListeners() {
+      sheetCover.addEventListener('click', (e) => {
+        const clickX = e.clientX || window.innerWidth / 2;
+        const clickY = e.clientY || window.innerHeight / 2;
+
+        if (!bookWrapper.classList.contains('is-open')) {
+          bookWrapper.classList.add('is-open');
+          statusHint.innerText = "Photo par tap karein page palatne ke liye!";
+          triggerEmojiBurst(heartBurst, clickX, clickY);
+
+          setTimeout(() => {
+            sheetCover.classList.add('flipped');
+            sheetCover.style.zIndex = '1';
+          }, 300);
+        } else {
+          closeBookFully();
+          triggerEmojiBurst(heartBurst, clickX, clickY);
+        }
+      });
+
+      allSheets.forEach((sheet, idx) => {
+        sheet.addEventListener('click', (e) => {
+          const clickX = e.clientX || window.innerWidth / 2;
+          const clickY = e.clientY || window.innerHeight / 2;
+
+          if (!sheet.classList.contains('flipped')) {
+            sheet.classList.add('flipped');
+            setTimeout(() => { sheet.style.zIndex = idx + 2; }, 300);
+            triggerEmojiBurst(starBurst, clickX, clickY);
+          } else {
+            sheet.classList.remove('flipped');
+            setTimeout(() => { sheet.style.zIndex = allSheets.length - idx; }, 300);
+            triggerEmojiBurst(heartBurst, clickX, clickY);
+          }
+        });
+      });
+
+      lastPhotoBase.addEventListener('click', (e) => {
+        const clickX = e.clientX || window.innerWidth / 2;
+        const clickY = e.clientY || window.innerHeight / 2;
+        triggerEmojiBurst(heartBurst, clickX, clickY);
         closeBookFully();
-        triggerEmojiBurst(heartBurst, clickX, clickY);
-      }
-    });
+      });
+    }
 
-    // Sheet 2 Click Logic
-    sheet2.addEventListener('click', (e) => {
-      const clickX = e.clientX || window.innerWidth / 2;
-      const clickY = e.clientY || window.innerHeight / 2;
-
-      if (!sheet2.classList.contains('flipped')) {
-        sheet2.classList.add('flipped');
-        setTimeout(() => { sheet2.style.zIndex = '2'; }, 300);
-        triggerEmojiBurst(starBurst, clickX, clickY);
-      } else {
-        sheet2.classList.remove('flipped');
-        setTimeout(() => { sheet2.style.zIndex = '2'; }, 300);
-        triggerEmojiBurst(heartBurst, clickX, clickY);
-      }
-    });
-
-    // Sheet 3 Click Logic
-    sheet3.addEventListener('click', (e) => {
-      const clickX = e.clientX || window.innerWidth / 2;
-      const clickY = e.clientY || window.innerHeight / 2;
-
-      if (!sheet3.classList.contains('flipped')) {
-        sheet3.classList.add('flipped');
-        setTimeout(() => { sheet3.style.zIndex = '3'; }, 300);
-        triggerEmojiBurst(starBurst, clickX, clickY);
-      } else {
-        sheet3.classList.remove('flipped');
-        setTimeout(() => { sheet3.style.zIndex = '1'; }, 300);
-        triggerEmojiBurst(heartBurst, clickX, clickY);
-      }
-    });
-
-    // Last Photo Base Click -> Close Back to Cover
-    lastPhotoBase.addEventListener('click', (e) => {
-      const clickX = e.clientX || window.innerWidth / 2;
-      const clickY = e.clientY || window.innerHeight / 2;
-      
-      triggerEmojiBurst(heartBurst, clickX, clickY);
-      closeBookFully();
-    });
+    window.addEventListener('DOMContentLoaded', loadGitHubPhotos);
   </script>
 </body>
 </html>
